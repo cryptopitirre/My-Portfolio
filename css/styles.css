@@ -1,33 +1,41 @@
 /* ==========================================================================
    Portfolio — Francisco-Efraín Rodríguez-Rivera
-   Plain CSS. Warm light theme by default, dark theme via the toggle
-   (html[data-theme="dark"]) or the visitor's system setting.
+
+   Design and behavior
+   Style: minimalistic, but immersive enough that it holds each idea.
+   Colors: welcoming and warm, like what warm light does to a room.
+   No glows, gradients, glass effects or other showy highlights.
+   Typography: a readable system font that flows with the page.
+   Layout: clear sections, generous spacing, project cards, links to each section.
+   Mobile: one column on phones, cards in a grid on desktop.
+   Main interaction: light and dark themes.
+   Later: search bar, translator, links to referenced subjects.
+
+   How it is built
+   Plain HTML, CSS and JavaScript. No frameworks, installs or external libraries.
+   Files: index.html, css/styles.css, js/script.js, linked with relative paths
+   so the site works on GitHub Pages.
+   Readable text, fits small screens, full keyboard support.
    ========================================================================== */
 
-/* ---------- Tokens: light (warm light through a room) ---------- */
+/* ---------- Colors: light (a lamp-lit room by day) ---------- */
 :root {
-  --bg: #FBF6EE;
-  --bg-glow: rgba(240, 190, 120, 0.22);
-  --surface: #FFFDF9;
-  --text: #2B2118;
-  --muted: #6B5A4A;
-  --accent: #A3481A;
-  --accent-strong: #B5541C;
-  --accent-soft: #F4E3D3;
-  --border: #EADFCF;
-  --shadow: 0 1px 2px rgba(60, 40, 20, 0.05), 0 8px 24px rgba(60, 40, 20, 0.06);
-  --shadow-hover: 0 2px 4px rgba(60, 40, 20, 0.06), 0 14px 32px rgba(60, 40, 20, 0.10);
+  --bg: #FBF3E4;
+  --surface: #FFFAF1;
+  --text: #2A2420;
+  --muted: #65584B;
+  --accent: #8C5A0B;
+  --accent-hover: #6F4708;
+  --border: #E8DCC6;
+  --border-strong: #D6C4A6;
 
-  --badge-live-bg: #E4EDD8;
-  --badge-live-text: #3E5A1E;
-  --badge-progress-bg: #F6E6C8;
-  --badge-progress-text: #7A4E0E;
-  --badge-local-bg: #ECE5DC;
-  --badge-local-text: #5A4B3C;
+  --badge-live: #3F5F1F;
+  --badge-progress: #8C5A0B;
+  --badge-local: #65584B;
 
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --radius: 14px;
-  --radius-sm: 8px;
+  --radius: 10px;
+  --radius-sm: 6px;
   --max-width: 68rem;
   --text-width: 42rem;
   --gutter: 1rem;
@@ -37,51 +45,41 @@
   color-scheme: light;
 }
 
-/* ---------- Tokens: dark (lamp-lit room at night) ---------- */
+/* ---------- Colors: dark (the same room at night) ---------- */
+/* Used when the visitor's system is dark and they have not picked light. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1C1712;
-    --bg-glow: rgba(224, 138, 79, 0.10);
-    --surface: #26201A;
-    --text: #F3EAD9;
-    --muted: #B8A893;
-    --accent: #E08A4F;
-    --accent-strong: #EBA06B;
-    --accent-soft: #3A2C20;
-    --border: #3A3027;
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 8px 24px rgba(0, 0, 0, 0.25);
-    --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.35);
+    --bg: #1A1611;
+    --surface: #241F18;
+    --text: #F2E8D5;
+    --muted: #BBAA90;
+    --accent: #E3B25A;
+    --accent-hover: #F0C778;
+    --border: #3A3127;
+    --border-strong: #4D4135;
 
-    --badge-live-bg: #2C3A1F;
-    --badge-live-text: #C4DCA4;
-    --badge-progress-bg: #3E2F17;
-    --badge-progress-text: #F0C987;
-    --badge-local-bg: #342B23;
-    --badge-local-text: #D3C4B1;
+    --badge-live: #B9D49A;
+    --badge-progress: #E3B25A;
+    --badge-local: #BBAA90;
 
     color-scheme: dark;
   }
 }
 
+/* Used when the visitor picks dark with the theme button. */
 :root[data-theme="dark"] {
-  --bg: #1C1712;
-  --bg-glow: rgba(224, 138, 79, 0.10);
-  --surface: #26201A;
-  --text: #F3EAD9;
-  --muted: #B8A893;
-  --accent: #E08A4F;
-  --accent-strong: #EBA06B;
-  --accent-soft: #3A2C20;
-  --border: #3A3027;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 8px 24px rgba(0, 0, 0, 0.25);
-  --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.35);
+  --bg: #1A1611;
+  --surface: #241F18;
+  --text: #F2E8D5;
+  --muted: #BBAA90;
+  --accent: #E3B25A;
+  --accent-hover: #F0C778;
+  --border: #3A3127;
+  --border-strong: #4D4135;
 
-  --badge-live-bg: #2C3A1F;
-  --badge-live-text: #C4DCA4;
-  --badge-progress-bg: #3E2F17;
-  --badge-progress-text: #F0C987;
-  --badge-local-bg: #342B23;
-  --badge-local-text: #D3C4B1;
+  --badge-live: #B9D49A;
+  --badge-progress: #E3B25A;
+  --badge-local: #BBAA90;
 
   color-scheme: dark;
 }
@@ -105,12 +103,9 @@ body {
   min-height: 100vh;
   font-family: var(--font);
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text);
   background-color: var(--bg);
-  /* A soft pool of warm light at the top of the page, nothing flashy. */
-  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, var(--bg-glow), transparent 70%);
-  background-repeat: no-repeat;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -121,7 +116,6 @@ h3 {
   line-height: 1.2;
   margin: 0 0 0.5em;
   font-weight: 650;
-  letter-spacing: -0.01em;
 }
 
 p {
@@ -146,7 +140,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-strong);
+  color: var(--accent-hover);
   text-decoration-thickness: 2px;
 }
 
@@ -163,6 +157,7 @@ a:hover {
   padding-inline: var(--gutter);
 }
 
+/* Hidden on screen, still read by screen readers (for labels such as the future search field). */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -175,7 +170,7 @@ a:hover {
   border: 0;
 }
 
-/* ---------- Skip link ---------- */
+/* ---------- Skip link (keyboard users jump straight to content) ---------- */
 .skip-link {
   position: absolute;
   top: 0.5rem;
@@ -184,25 +179,23 @@ a:hover {
   padding: 0.6rem 1rem;
   background: var(--surface);
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   transform: translateY(-200%);
-  transition: transform 0.2s ease;
 }
 
 .skip-link:focus {
   transform: translateY(0);
 }
 
-/* ---------- Header and navigation ---------- */
+/* ---------- Header and section links ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  -webkit-backdrop-filter: saturate(1.2) blur(8px);
-  backdrop-filter: saturate(1.2) blur(8px);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s ease;
 }
 
 .nav {
@@ -228,13 +221,13 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 1rem;
+  gap: 0.25rem 1.25rem;
   list-style: none;
 }
 
 .nav__links a {
   display: inline-block;
-  padding: 0.35rem 0.1rem;
+  padding: 0.35rem 0;
   color: var(--muted);
   font-size: 0.95rem;
   text-decoration: none;
@@ -254,7 +247,7 @@ a:hover {
   gap: 0.75rem;
 }
 
-/* ---------- Theme toggle ---------- */
+/* ---------- Theme button ---------- */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -267,10 +260,9 @@ a:hover {
   font-size: 0.9rem;
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -297,39 +289,27 @@ a:hover {
   font-size: clamp(1.5rem, 3.5vw, 2rem);
 }
 
-.section__eyebrow {
-  margin: 0 0 0.4rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
 .section__lead {
   max-width: var(--text-width);
   color: var(--muted);
   margin-bottom: 2rem;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (name and introduction) ---------- */
 .hero {
   padding-block: clamp(4rem, 12vw, 8rem) clamp(3rem, 8vw, 5rem);
 }
 
 .hero__focus {
   margin: 0 0 0.75rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--accent);
 }
 
 .hero__name {
-  font-size: clamp(2.1rem, 7vw, 3.75rem);
+  font-size: clamp(2.1rem, 7vw, 3.5rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
   margin-bottom: 0.4em;
   overflow-wrap: break-word;
 }
@@ -363,28 +343,29 @@ a:hover {
   font: inherit;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .button--primary {
   background: var(--accent);
-  color: var(--surface);
+  border-color: var(--accent);
+  color: var(--bg);
 }
 
 .button--primary:hover {
-  background: var(--accent-strong);
-  color: var(--surface);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--bg);
   text-decoration: none;
 }
 
 .button--ghost {
   background: transparent;
   color: var(--text);
-  border-color: var(--border);
+  border-color: var(--border-strong);
 }
 
 .button--ghost:hover {
@@ -402,7 +383,7 @@ a:hover {
   margin-bottom: 0;
 }
 
-/* ---------- Cards and grids ---------- */
+/* ---------- Cards and grids: one column on phones ---------- */
 .card-grid,
 .interest-grid,
 .skill-grid,
@@ -420,13 +401,12 @@ a:hover {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  transition: border-color 0.2s ease, background-color 0.3s ease;
 }
 
 .card__title {
   font-size: 1.15rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
 .card__text {
@@ -437,28 +417,24 @@ a:hover {
   margin-bottom: 0;
 }
 
+/* Lists inside cards: no bullet points, just spacing and a thin line between items. */
 .card__list {
   list-style: none;
-  display: grid;
-  gap: 0.5rem;
 }
 
 .card__list li {
-  position: relative;
-  padding-left: 1.1rem;
+  padding-block: 0.55rem;
   color: var(--muted);
+  border-top: 1px solid var(--border);
 }
 
-.card__list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.7em;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.7;
+.card__list li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.card__list li:last-child {
+  padding-bottom: 0;
 }
 
 .card__list strong {
@@ -505,39 +481,33 @@ a:hover {
   font-size: 0.95rem;
 }
 
-/* Cards with a link get a gentle lift; static cards stay still. */
-.project:has(.project__link):hover,
+.project:hover,
 .project:focus-within {
-  box-shadow: var(--shadow-hover);
-  border-color: var(--accent-soft);
-  transform: translateY(-2px);
+  border-color: var(--border-strong);
 }
 
-/* ---------- Badges ---------- */
+/* ---------- Status labels (honest project status) ---------- */
 .badge {
   display: inline-block;
-  padding: 0.15rem 0.6rem;
-  font-size: 0.75rem;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
   line-height: 1.6;
-  border-radius: 999px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
 .badge--live {
-  background: var(--badge-live-bg);
-  color: var(--badge-live-text);
+  color: var(--badge-live);
 }
 
 .badge--progress {
-  background: var(--badge-progress-bg);
-  color: var(--badge-progress-text);
+  color: var(--badge-progress);
 }
 
 .badge--local {
-  background: var(--badge-local-bg);
-  color: var(--badge-local-text);
+  color: var(--badge-local);
 }
 
 /* ---------- Contact ---------- */
@@ -557,10 +527,8 @@ a:hover {
 
 .contact-list__label {
   min-width: 5rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -580,7 +548,7 @@ a:hover {
   margin: 0;
 }
 
-/* ---------- Tablet and up ---------- */
+/* ---------- Tablet and up: two columns ---------- */
 @media (min-width: 40rem) {
   :root {
     --gutter: 1.5rem;
@@ -594,7 +562,7 @@ a:hover {
   }
 }
 
-/* ---------- Desktop ---------- */
+/* ---------- Desktop: three columns ---------- */
 @media (min-width: 64rem) {
   :root {
     --gutter: 2rem;
@@ -606,7 +574,7 @@ a:hover {
   }
 }
 
-/* ---------- Small phones: stack the header ---------- */
+/* ---------- Small phones: section links move to their own row ---------- */
 @media (max-width: 30rem) {
   .nav {
     flex-wrap: wrap;
@@ -616,7 +584,7 @@ a:hover {
   .nav__links {
     order: 3;
     width: 100%;
-    gap: 0.25rem 0.9rem;
+    gap: 0.25rem 1rem;
   }
 
   .theme-toggle__label {
@@ -641,11 +609,6 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
-
-  .project:has(.project__link):hover,
-  .project:focus-within {
-    transform: none;
-  }
 }
 
 /* ---------- Print ---------- */
@@ -662,7 +625,6 @@ a:hover {
   }
 
   .card {
-    box-shadow: none;
     break-inside: avoid;
   }
 }
