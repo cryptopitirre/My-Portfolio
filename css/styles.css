@@ -4,8 +4,9 @@
    Design and behavior
    Style: minimalistic, but immersive enough that it holds each idea.
    Colors: welcoming and warm, like what warm light does to a room.
-   No glows, gradients, glass effects or other showy highlights.
-   Typography: a readable system font that flows with the page.
+   Look: akin to orphograph.com: warm paper, ink, brass, serif type,
+   small capital labels and quietly embossed cards.
+   Typography: a readable serif from the visitor's own system (no web fonts).
    Layout: clear sections, generous spacing, project cards, links to each section.
    Mobile: one column on phones, cards in a grid on desktop.
    Main interaction: light and dark themes.
@@ -18,49 +19,85 @@
    Readable text, fits small screens, full keyboard support.
    ========================================================================== */
 
-/* ---------- Colors: light (a lamp-lit room by day) ---------- */
+/* ---------- Colors: light (paper and ink) ---------- */
 :root {
-  --bg: #FBF3E4;
-  --surface: #FFFAF1;
-  --text: #2A2420;
-  --muted: #65584B;
-  --accent: #8C5A0B;
-  --accent-hover: #6F4708;
-  --border: #E8DCC6;
-  --border-strong: #D6C4A6;
+  --bg: #F4EFE4;
+  --header-bg: rgba(247, 241, 227, 0.86);
+  --surface: #FAF6EE;
+  --text: #3B352D;
+  --heading: #14110D;
+  --muted: #6B6154;
+  --accent: #6F5528;
+  --accent-hover: #4F3C1C;
+  --brass: #9A7A43;
+  --border: rgba(76, 58, 34, 0.22);
+  --border-strong: rgba(76, 58, 34, 0.38);
+  --hairline: rgba(76, 58, 34, 0.13);
 
-  --badge-live: #3F5F1F;
-  --badge-progress: #8C5A0B;
-  --badge-local: #65584B;
+  --button-bg: #14110D;
+  --button-text: #FBF7EA;
+  --button-hover: #2C2620;
 
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --radius: 10px;
-  --radius-sm: 6px;
+  --card-shadow:
+    inset 0 1px 0 rgba(255, 252, 245, 0.85),
+    inset 0 -1px 0 rgba(90, 70, 44, 0.20),
+    0 10px 26px -12px rgba(32, 24, 16, 0.14);
+  --card-shadow-hover:
+    inset 0 1px 0 rgba(255, 252, 245, 0.85),
+    inset 0 -1px 0 rgba(90, 70, 44, 0.20),
+    0 14px 30px -12px rgba(32, 24, 16, 0.26);
+
+  --badge-live: #6F5528;
+  --badge-progress: #6E2418;
+  --badge-local: #6B6154;
+
+  --font-body: "Spectral", "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, "Times New Roman", serif;
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+  --track-cap: 0.14em;
+  --track-wide: 0.22em;
+  --radius: 2px;
+  --radius-pill: 999px;
   --max-width: 68rem;
   --text-width: 42rem;
-  --gutter: 1rem;
-  --section-space: clamp(3.5rem, 8vw, 6rem);
-  --header-height: 3.75rem;
+  --gutter: 1.25rem;
+  --section-space: clamp(4rem, 9vw, 7rem);
+  --header-height: 4rem;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
   color-scheme: light;
 }
 
-/* ---------- Colors: dark (the same room at night) ---------- */
+/* ---------- Colors: dark (charcoal and brass) ---------- */
 /* Used when the visitor's system is dark and they have not picked light. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1A1611;
-    --surface: #241F18;
-    --text: #F2E8D5;
-    --muted: #BBAA90;
-    --accent: #E3B25A;
-    --accent-hover: #F0C778;
-    --border: #3A3127;
-    --border-strong: #4D4135;
+    --bg: #11100F;
+    --header-bg: rgba(17, 16, 15, 0.86);
+    --surface: #1C1A18;
+    --text: #E6DDCB;
+    --heading: #F7F1E3;
+    --muted: #A99D88;
+    --accent: #C9A869;
+    --accent-hover: #DDC089;
+    --brass: #B08D4F;
+    --border: rgba(201, 168, 105, 0.20);
+    --border-strong: rgba(201, 168, 105, 0.38);
+    --hairline: rgba(201, 168, 105, 0.12);
 
-    --badge-live: #B9D49A;
-    --badge-progress: #E3B25A;
-    --badge-local: #BBAA90;
+    --button-bg: #F4EFE4;
+    --button-text: #14110D;
+    --button-hover: #E7DDC9;
+
+    --card-shadow:
+      inset 0 1px 0 rgba(255, 252, 245, 0.05),
+      0 10px 26px -12px rgba(0, 0, 0, 0.55);
+    --card-shadow-hover:
+      inset 0 1px 0 rgba(255, 252, 245, 0.07),
+      0 14px 30px -12px rgba(0, 0, 0, 0.70);
+
+    --badge-live: #C9A869;
+    --badge-progress: #D8826A;
+    --badge-local: #A99D88;
 
     color-scheme: dark;
   }
@@ -68,18 +105,33 @@
 
 /* Used when the visitor picks dark with the theme button. */
 :root[data-theme="dark"] {
-  --bg: #1A1611;
-  --surface: #241F18;
-  --text: #F2E8D5;
-  --muted: #BBAA90;
-  --accent: #E3B25A;
-  --accent-hover: #F0C778;
-  --border: #3A3127;
-  --border-strong: #4D4135;
+  --bg: #11100F;
+  --header-bg: rgba(17, 16, 15, 0.86);
+  --surface: #1C1A18;
+  --text: #E6DDCB;
+  --heading: #F7F1E3;
+  --muted: #A99D88;
+  --accent: #C9A869;
+  --accent-hover: #DDC089;
+  --brass: #B08D4F;
+  --border: rgba(201, 168, 105, 0.20);
+  --border-strong: rgba(201, 168, 105, 0.38);
+  --hairline: rgba(201, 168, 105, 0.12);
 
-  --badge-live: #B9D49A;
-  --badge-progress: #E3B25A;
-  --badge-local: #BBAA90;
+  --button-bg: #F4EFE4;
+  --button-text: #14110D;
+  --button-hover: #E7DDC9;
+
+  --card-shadow:
+    inset 0 1px 0 rgba(255, 252, 245, 0.05),
+    0 10px 26px -12px rgba(0, 0, 0, 0.55);
+  --card-shadow-hover:
+    inset 0 1px 0 rgba(255, 252, 245, 0.07),
+    0 14px 30px -12px rgba(0, 0, 0, 0.70);
+
+  --badge-live: #C9A869;
+  --badge-progress: #D8826A;
+  --badge-local: #A99D88;
 
   color-scheme: dark;
 }
@@ -101,21 +153,24 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--text);
   background-color: var(--bg);
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  font-family: var(--font-display);
+  color: var(--heading);
+  line-height: 1.15;
   margin: 0 0 0.5em;
-  font-weight: 650;
+  font-weight: 500;
 }
 
 p {
@@ -135,19 +190,21 @@ img {
 
 a {
   color: var(--accent);
+  text-decoration-color: var(--border-strong);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-underline-offset: 0.2em;
+  transition: color 0.22s var(--ease), text-decoration-color 0.22s var(--ease);
 }
 
 a:hover {
   color: var(--accent-hover);
-  text-decoration-thickness: 2px;
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .container {
@@ -178,9 +235,9 @@ a:hover {
   z-index: 100;
   padding: 0.6rem 1rem;
   background: var(--surface);
-  color: var(--text);
+  color: var(--heading);
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   transform: translateY(-200%);
 }
 
@@ -193,22 +250,27 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  transition: background-color 0.3s ease;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 1rem;
   min-height: var(--header-height);
 }
 
+/* Name set like a wordmark: serif capitals, widely spaced. */
 .nav__brand {
-  font-weight: 650;
-  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
+  color: var(--heading);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -221,7 +283,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 1.25rem;
+  gap: 0.25rem 1.5rem;
   list-style: none;
 }
 
@@ -229,16 +291,17 @@ a:hover {
   display: inline-block;
   padding: 0.35rem 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
 .nav__links a:hover,
 .nav__links a[aria-current="true"] {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 0.35em;
+  color: var(--heading);
+  border-bottom-color: var(--brass);
 }
 
 .nav__actions {
@@ -252,33 +315,36 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   min-width: 2.75rem;
   min-height: 2.75rem;
-  padding: 0.4rem 0.8rem;
-  font: inherit;
-  font-size: 0.9rem;
-  color: var(--text);
-  background: var(--surface);
+  padding: 0.4rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
+  color: var(--heading);
+  background: transparent;
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   cursor: pointer;
+  transition: border-color 0.22s var(--ease), background-color 0.22s var(--ease);
 }
 
 .theme-toggle:hover {
-  border-color: var(--accent);
+  border-color: var(--heading);
 }
 
 .theme-toggle__icon {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
   flex-shrink: 0;
 }
 
 /* ---------- Sections ---------- */
 .section {
   padding-block: var(--section-space);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--hairline);
 }
 
 .section:first-of-type {
@@ -286,45 +352,78 @@ a:hover {
 }
 
 .section__title {
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  position: relative;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* A short brass rule ending in a dot, under each section title. */
+.section__title::after,
+.section__title::before {
+  content: "";
+  position: absolute;
+  background: var(--brass);
+}
+
+.section__title::after {
+  left: 0;
+  bottom: 0;
+  width: 4rem;
+  height: 1px;
+}
+
+.section__title::before {
+  left: 4rem;
+  bottom: -0.15rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
 }
 
 .section__lead {
   max-width: var(--text-width);
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 /* ---------- Hero (name and introduction) ---------- */
 .hero {
-  padding-block: clamp(4rem, 12vw, 8rem) clamp(3rem, 8vw, 5rem);
+  padding-block: clamp(4.5rem, 12vw, 8rem) clamp(3.5rem, 8vw, 5.5rem);
 }
 
 .hero__focus {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
+  margin: 0 0 1rem;
+  font-size: 0.75rem;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--accent);
 }
 
 .hero__name {
-  font-size: clamp(2.1rem, 7vw, 3.5rem);
-  font-weight: 700;
-  margin-bottom: 0.4em;
+  font-size: clamp(2.4rem, 5.4vw, 4.15rem);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  margin-bottom: 0.5em;
   overflow-wrap: break-word;
 }
 
 .hero__intro {
-  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
   font-style: italic;
   color: var(--muted);
   max-width: var(--text-width);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .hero__lead {
   font-size: clamp(1.05rem, 2.2vw, 1.2rem);
   max-width: var(--text-width);
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 .hero__actions {
@@ -333,45 +432,47 @@ a:hover {
   gap: 0.75rem;
 }
 
-/* ---------- Buttons ---------- */
+/* ---------- Buttons: ink pills with small capitals ---------- */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.6rem 1.25rem;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
+  min-height: 2.9rem;
+  padding: 0.6rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
   border: 1px solid transparent;
   text-decoration: none;
   cursor: pointer;
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease), color 0.22s var(--ease);
 }
 
 .button--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+  background: var(--button-bg);
+  border-color: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: 0 1px 2px rgba(60, 40, 20, 0.04), 0 2px 6px rgba(60, 40, 20, 0.04);
 }
 
 .button--primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: var(--bg);
-  text-decoration: none;
+  background: var(--button-hover);
+  border-color: var(--button-hover);
+  color: var(--button-text);
 }
 
 .button--ghost {
   background: transparent;
-  color: var(--text);
-  border-color: var(--border-strong);
+  color: var(--heading);
+  border-color: var(--heading);
 }
 
 .button--ghost:hover {
-  border-color: var(--accent);
-  color: var(--text);
-  text-decoration: none;
+  background: var(--heading);
+  color: var(--bg);
 }
 
 /* ---------- About ---------- */
@@ -394,19 +495,21 @@ a:hover {
   list-style: none;
 }
 
+/* Paper cards with a faint emboss, as on orphograph.com. */
 .card {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.6rem 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: border-color 0.2s ease, background-color 0.3s ease;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.22s var(--ease), border-color 0.22s var(--ease), background-color 0.3s var(--ease);
 }
 
 .card__title {
-  font-size: 1.15rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.8rem;
 }
 
 .card__text {
@@ -423,9 +526,9 @@ a:hover {
 }
 
 .card__list li {
-  padding-block: 0.55rem;
+  padding-block: 0.6rem;
   color: var(--muted);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--hairline);
 }
 
 .card__list li:first-child {
@@ -438,7 +541,7 @@ a:hover {
 }
 
 .card__list strong {
-  color: var(--text);
+  color: var(--heading);
   font-weight: 600;
 }
 
@@ -449,11 +552,11 @@ a:hover {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
 }
 
 .project__title {
-  font-size: 1.2rem;
+  font-size: 1.32rem;
   margin: 0;
 }
 
@@ -467,7 +570,7 @@ a:hover {
 .project__date {
   font-size: 0.85rem;
   color: var(--muted);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: oldstyle-nums;
 }
 
 .project__desc {
@@ -477,24 +580,28 @@ a:hover {
 
 .project__link {
   align-self: flex-start;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
 }
 
 .project:hover,
 .project:focus-within {
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* ---------- Status labels (honest project status) ---------- */
 .badge {
   display: inline-block;
-  padding: 0.05rem 0.5rem;
-  font-size: 0.8rem;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.66rem;
   font-weight: 600;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
   line-height: 1.6;
   border: 1px solid currentColor;
-  border-radius: 4px;
+  border-radius: 1px;
   white-space: nowrap;
 }
 
@@ -514,21 +621,24 @@ a:hover {
 .contact-list {
   list-style: none;
   display: grid;
-  gap: 1rem;
   max-width: var(--text-width);
+  border-top: 1px solid var(--hairline);
 }
 
 .contact-list li {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.25rem 0.75rem;
+  gap: 0.25rem 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .contact-list__label {
-  min-width: 5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  min-width: 6rem;
+  font-size: 0.72rem;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -538,9 +648,11 @@ a:hover {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  padding-block: 2rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
+  padding-block: 2.25rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.78rem;
+  letter-spacing: var(--track-cap);
+  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -578,21 +690,25 @@ a:hover {
 @media (max-width: 30rem) {
   .nav {
     flex-wrap: wrap;
-    padding-block: 0.5rem;
+    padding-block: 0.6rem;
   }
 
   .nav__links {
     order: 3;
     width: 100%;
-    gap: 0.25rem 1rem;
+    gap: 0.25rem 1.1rem;
   }
 
   .theme-toggle__label {
     display: none;
   }
 
+  .hero__actions .button {
+    width: 100%;
+  }
+
   html {
-    scroll-padding-top: 6.5rem;
+    scroll-padding-top: 7rem;
   }
 }
 
@@ -625,6 +741,7 @@ a:hover {
   }
 
   .card {
+    box-shadow: none;
     break-inside: avoid;
   }
 }
