@@ -1,48 +1,245 @@
-── PERSONAL CONTENT ──────────────────────────────
-Name:          Francisco-Efraín Rodríguez-Rivera
-Focus:         AI & Cybersecurity
-Intro line:    Eternal student walking towards enlightenment.
-Audience:      People who want to grow their own abilities by using AI for
-               their goals: finding where it fits and adapting "x" into their "y".
-One-liner:     [proposed] I help people find where AI fits their goals, and how to adapt it.
-Background:    Curiosity drives me, but ambition most of all: looking at what
-               sits behind an interest and how to apply it to life, through discipline.
-Interests:
-  Building     Building and deconstructing
-  Fitness      15-year path in the fitness industry
-               Goal: open a classic gym · earn specific certifications
-  Finance      DeFi since December 2019, which led into traditional finance
-               Goal: work at the front of blockchain (legislation, implementation, building)
-               Goal: SIE, Series 6, Series 7 licenses
-               Financial planning: putting risk into plain words   [Q2]
-  Investing    Traditional finance · blockchain
-  Farming      Self-sufficiency
-Skills:        Sociology (bachelor's, nearly complete)
-               Physical training (15 yrs) · Nutrition (basic to fairly advanced)
-               Finance: blockchain markets (main focus), risk, financial planning,
-               insurance [Q2]
-               Prompt engineering (since Oct 2025)
-Projects:
-  Hydroboro          Oct 2025  In progress   [Q4]  plain description as written
-  Orphograph         May 2026  Live          orphograph.com
-  Study Guide        Jul 2026  [Q3]
-  Status Bar         Oct 2026  Local  [Q3]
-  The Veil Offline   Oct 2026  Local  [Q3]   offline AI for doomsday prep
-Contact:       hello@orphograph.com · github.com/Orphograph/Orphograph
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Francisco-Efraín Rodríguez-Rivera · AI &amp; Cybersecurity</title>
+  <meta name="description" content="Francisco-Efraín Rodríguez-Rivera: AI and cybersecurity, helping people find where AI fits their own goals.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Loaded in the head so a saved theme applies before the page paints. -->
+  <script src="js/script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-── DESIGN & BEHAVIOR ─────────────────────────────
-Style:         Minimal, warm, immersive enough to hold each idea; no gradients, glows or flashy effects
-Colors:        [Q1]
-Type:          System font stack, readable line length
-Layout:        Sticky nav (About · Skills · Projects · Contact), clear sections,
-               generous spacing, project cards
-Mobile:        One column on phones, card grid on desktop
-Interaction:   Light/dark toggle
-Later:         Search bar · translator · links to subjects mentioned
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a class="nav__brand" href="#top">Francisco-Efraín</a>
 
-── BUILD RULES ───────────────────────────────────
-Stack:         Plain HTML/CSS/JS, no frameworks, libraries or installs
-Files:         index.html · css/styles.css · js/script.js, relative links
-Content:       Your facts only; unused contacts left out; planned work labeled honestly
-Access:        Readable text, fits small screens, keyboard support
-Delivery:      One complete file per turn, after approval
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme">
+          <svg class="theme-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <span class="theme-toggle__label">Dark theme</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- Introduction -->
+    <section class="hero" id="top" aria-labelledby="hero-name">
+      <div class="container">
+        <p class="hero__focus">AI &amp; Cybersecurity</p>
+        <h1 class="hero__name" id="hero-name">Francisco-Efraín Rodríguez-Rivera</h1>
+        <p class="hero__intro">Eternal student walking towards enlightenment.</p>
+        <p class="hero__lead">I help people find where AI fits their own goals, and how to adapt it.</p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#projects">See projects</a>
+          <a class="button button--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 class="section__title" id="about-title">About</h2>
+        <div class="about__text">
+          <p>Curiosity has always been a driver, but most of all ambition: looking at what could be behind an interest and how to apply it to life, dedicated through discipline.</p>
+          <p>I work with people who want to expand their own abilities through AI: bringing out their ideas and seeing where it is most useful to adapt an “x” into their “y”.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interests -->
+    <section class="section" id="interests" aria-labelledby="interests-title">
+      <div class="container">
+        <h2 class="section__title" id="interests-title">Interests</h2>
+        <p class="section__lead">What I follow, and where each one is heading.</p>
+
+        <ul class="interest-grid">
+          <li class="card">
+            <h3 class="card__title">Building</h3>
+            <p class="card__text">Building and deconstructing.</p>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Fitness</h3>
+            <ul class="card__list">
+              <li>A 15-year path following the fitness industry</li>
+              <li><strong>Goal:</strong> opening a classic gym</li>
+              <li><strong>Goal:</strong> earning specific educational certifications</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Finance and blockchain</h3>
+            <ul class="card__list">
+              <li>In decentralized finance since late December 2019, which led into traditional finance</li>
+              <li><strong>Goal:</strong> working at the front of the blockchain space, in legislation, implementation or building inside it</li>
+              <li><strong>Goal:</strong> traditional finance licenses (SIE, Series 6, Series 7 and more)</li>
+              <li><strong>Financial planning:</strong> putting risk into plain words for clients</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Investing</h3>
+            <ul class="card__list">
+              <li>Traditional finance</li>
+              <li>The blockchain space</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Farming life</h3>
+            <p class="card__text">Self-sustainability.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 class="section__title" id="skills-title">Skills</h2>
+
+        <ul class="skill-grid">
+          <li class="card">
+            <h3 class="card__title">Education</h3>
+            <ul class="card__list">
+              <li>Sociology, bachelor’s degree (nearly complete)</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Training and nutrition</h3>
+            <ul class="card__list">
+              <li>Physical training knowledge (15 years)</li>
+              <li>Nutrition knowledge (basic to fairly advanced)</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Finance</h3>
+            <ul class="card__list">
+              <li>Blockchain markets (main focus)</li>
+              <li>Risk, and reducing it through financial planning</li>
+            </ul>
+          </li>
+
+          <li class="card">
+            <h3 class="card__title">Tools</h3>
+            <ul class="card__list">
+              <li>Prompt engineering (since October 2025), used to build the projects below</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 class="section__title" id="projects-title">Projects</h2>
+        <p class="section__lead">Each card says honestly where the project stands.</p>
+
+        <ul class="project-grid">
+          <li class="card project">
+            <div class="project__header">
+              <h3 class="project__title">Hydroboro</h3>
+              <div class="project__meta">
+                <time class="project__date" datetime="2025-10">Oct 2025</time>
+                <span class="badge badge--progress">In progress</span>
+              </div>
+            </div>
+            <p class="project__desc">A research and product venture for measuring how systems behave over time. It looks at a stream of data and asks whether its behavior looks like noise, a persistent pattern, or a change in operating conditions (a “regime change”). It spans software observability tools, an interface, offline demonstrations and proposed physical instruments, with reproducible evidence and traceable records at its center. In everyday terms: a dashboard that helps you understand what a system is doing, and what evidence supports that view.</p>
+          </li>
+
+          <li class="card project">
+            <div class="project__header">
+              <h3 class="project__title">Orphograph</h3>
+              <div class="project__meta">
+                <time class="project__date" datetime="2026-05">May 2026</time>
+                <span class="badge badge--live">Live</span>
+              </div>
+            </div>
+            <p class="project__desc">A user-friendly Bitcoin file anchoring system. The website is the place to anchor, and people can download the MCP to their own computer.</p>
+            <a class="project__link" href="https://orphograph.com" rel="noopener">Visit orphograph.com</a>
+          </li>
+
+          <li class="card project">
+            <div class="project__header">
+              <h3 class="project__title">(Make-Shift) Study Guide</h3>
+              <div class="project__meta">
+                <time class="project__date" datetime="2026-07">Jul 2026</time>
+                <span class="badge badge--local">Local build · not public</span>
+              </div>
+            </div>
+            <p class="project__desc">Details to come.</p>
+          </li>
+
+          <li class="card project">
+            <div class="project__header">
+              <h3 class="project__title">Status Bar</h3>
+              <div class="project__meta">
+                <time class="project__date" datetime="2026-10">Oct 2026</time>
+                <span class="badge badge--local">Local build · not public</span>
+              </div>
+            </div>
+            <p class="project__desc">A Pomodoro timer that lives in the status bar.</p>
+          </li>
+
+          <li class="card project">
+            <div class="project__header">
+              <h3 class="project__title">The Veil Offline</h3>
+              <div class="project__meta">
+                <time class="project__date" datetime="2026-10">Oct 2026</time>
+                <span class="badge badge--local">Local build · not public</span>
+              </div>
+            </div>
+            <p class="project__desc">A local AI for doomsday preparation that runs fully offline.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section__title" id="contact-title">Contact</h2>
+        <p class="section__lead">Reach out by email, or find the code on GitHub.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-list__label">Email</span>
+            <a href="mailto:hello@orphograph.com">hello@orphograph.com</a>
+          </li>
+          <li>
+            <span class="contact-list__label">GitHub</span>
+            <a href="https://github.com/Orphograph/Orphograph" rel="noopener">github.com/Orphograph/Orphograph</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Francisco-Efraín Rodríguez-Rivera</p>
+    </div>
+  </footer>
+</body>
+</html>
